@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 import SwiftyJSONMappable
 import Moya
+import MBProgressHUD
 
 typealias successBlock = (Any) -> ()
 var succBlock: successBlock?
@@ -18,36 +19,33 @@ typealias filureStrBlock = (Any) -> ()
 var filureBlock: filureStrBlock?
 
 
+//数据请求时的loading加载
+let LoadingPlugin = NetworkActivityPlugin { (type, target) in
+    guard let vc = topVC else { return }
+    switch type {
+    case .began:
+        MBProgressHUD.hide(for: vc.view, animated: false)
+        MBProgressHUD.showAdded(to: vc.view, animated: true)
+    case .ended:
+        MBProgressHUD.hide(for: vc.view, animated: true)
+    }
+}
+//请求时间
+let timeoutClosure = {(endpoint: Endpoint, closure: MoyaProvider<UAPI>.RequestResultClosure) -> Void in
+    
+    if var urlRequest = try? endpoint.urlRequest() {
+        urlRequest.timeoutInterval = 20
+        closure(.success(urlRequest))
+    } else {
+        closure(.failure(MoyaError.requestMapping(endpoint.url)))
+    }
+}
+
 class PublicClass: NSObject {
 
-    /*
-     - (BOOL) isBlankString:(NSString *)string {
-     if (string == nil || string == NULL) {
-     return YES;
-     }
-     if ([string isKindOfClass:[NSNull class]]) {
-     return YES;
-     }
-     if ([[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0) {
-     return YES;
-     }
-     return NO;
-     }
-     
-     */
-
-    class func isNullString(str:String) ->Bool {
-        
-        if str == nil || str == "" {
-            return true
-        }
-        return false
-        
-    }
-    
     class func netWorking(path:UAPI){
-        
-        MoyaProvider<UAPI>().request(path) { (result) in
+        // requestClosure请求时间 plugins插件 
+        MoyaProvider<UAPI>(requestClosure: timeoutClosure,plugins: [LoadingPlugin]).request(path) { (result) in
             switch result {
             case let .success(response):
                 do {
@@ -80,7 +78,7 @@ class PublicClass: NSObject {
             print("无法解析出JSONString")
             return ""
         }
-        let data : NSData! = try? JSONSerialization.data(withJSONObject: dictionary, options: []) as NSData!
+        let data : NSData! = try? JSONSerialization.data(withJSONObject: dictionary, options: []) as NSData
         let JSONString = NSString(data:data as Data,encoding: String.Encoding.utf8.rawValue)
         return JSONString! as String
         
