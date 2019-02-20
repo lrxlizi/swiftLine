@@ -49,65 +49,69 @@ class CPRecommedCell: UICollectionViewCell {
     
     func configUI(){
         
-        self.contentView .addSubview(iconVIew)
-        iconVIew.snp.makeConstraints { (make) in
-            make.left.right.equalTo(0)
-            make.top.equalTo(5)
-            make.height.equalTo(100)
+        
+       
+        self.contentView .addSubview(subNameLB)
+        subNameLB.snp.makeConstraints { (make) in
+            make.left.equalTo(10)
+            make.bottom.equalTo(self.contentView.snp.bottom).offset(-5)
+            make.right.equalTo(-2)
+            make.height.equalTo(12)
         }
         
         self.contentView.addSubview(nameLB)
         nameLB.snp.makeConstraints { (make) in
             make.left.equalTo(10)
-            make.top.equalTo(iconVIew.snp.bottom).offset(5)
+            make.bottom.equalTo(subNameLB.snp.top).offset(-10)
             make.right.equalTo(-2)
             make.height.equalTo(14)
         }
         
-        self.contentView .addSubview(subNameLB)
-        subNameLB.snp.makeConstraints { (make) in
-            make.left.equalTo(10)
-            make.top.equalTo(nameLB.snp.bottom).offset(10)
-            make.right.equalTo(-2)
-            make.height.equalTo(12)
+        self.contentView .addSubview(iconVIew)
+        iconVIew.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.top.equalTo(5)
+            make.bottom.equalTo(self.nameLB.snp.top).offset(-5)
         }
+        
+        
     }
     func setValueCell(dict:AnyObject ,comicType:NSNumber){
        
-        if comicType == 5 {
-            nameLB.snp.updateConstraints { (make) in
-                make.top.equalTo(iconVIew.snp.bottom).offset(0)
-                make.height.equalTo(0)
-            }
-            
-            subNameLB.snp.updateConstraints { (make) in
-                make.top.equalTo(nameLB.snp.bottom).offset(0)
-                make.height.equalTo(0)
-            }
-        }else{
-            nameLB.snp.updateConstraints { (make) in
-                make.top.equalTo(iconVIew.snp.bottom).offset(10)
-                make.height.equalTo(16)
-            }
-            subNameLB.snp.updateConstraints { (make) in
-                make.top.equalTo(nameLB.snp.bottom).offset(7)
-                make.height.equalTo(12)
-            }
-           
-        }
+//        if comicType == 5 {
+//
+//            subNameLB.snp.updateConstraints { (make) in
+//                make.height.equalTo(0)
+//            }
+//            nameLB.snp.updateConstraints { (make) in
+//                make.bottom.equalTo(subNameLB.snp.top).offset(0)
+//                make.height.equalTo(0)
+//            }
+//        }else{
+//
+//            subNameLB.snp.updateConstraints { (make) in
+//                make.height.equalTo(12)
+//            }
+//
+//            nameLB.snp.updateConstraints { (make) in
+//                make.bottom.equalTo(subNameLB.snp.top).offset(-7)
+//                make.height.equalTo(16)
+//            }
+//
+//
+//        }
         iconVIew.kf.setImage(urlString: (dict["cover"] as! String))
- 
         
         guard let name = dict["name"] else {return}
         if name == nil{
-            self.nameLB.text = ""
+            self.nameLB.text = (dict["title"] as! String)
         }else{
             self.nameLB.text = (dict["name"] as! String)
         }
         
         guard let subTitle = dict["subTitle"] else {return}
         if subTitle == nil{
-            self.subNameLB.text = ""
+            self.subNameLB.text = "更新至\(dict["content"] as AnyObject)集"
         }else{
             self.subNameLB.text = (dict["subTitle"] as! String)
         }

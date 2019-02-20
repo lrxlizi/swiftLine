@@ -135,13 +135,23 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
             let width = floor((ScreenWidth-15) / 4.0)
             return CGSize(width: width, height: 80)
          }else{
+            if name == nil{
+                if  comicType == 7 || comicType == 13{
+                    return CGSize(width: floor((ScreenWidth-10) / 3.0), height:200)
+                }else{
+                   return CGSize(width: floor((ScreenWidth-5) / 2.0), height:155)
+                }
+                
+            }else{
+                if  comicType == 7 || comicType == 13{
+                    return CGSize(width: floor((ScreenWidth-10) / 3.0), height:250)
+                }else{
+                    return CGSize(width: floor((ScreenWidth-5) / 2.0), height:155)
+                }
             
+            }
         }
-        if name == nil{
-            return CGSize(width: floor((ScreenWidth-5) / 2.0), height:100)
-        }else{
-            return CGSize(width: floor((ScreenWidth-5) / 2.0), height:155)
-        }
+       
     }
     
     
@@ -200,8 +210,9 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         }
         PublicClass.getFilureBlock { (error) in
             print("error==",error)
+            //请求失败添加t空白页
             self.collectionView.cpempty?.allowShow = true
-             self.collectionView.reloadData()
+            self.collectionView.reloadData()
         }
     }
     
