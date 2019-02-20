@@ -177,9 +177,10 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
                 //周榜 VIP榜 畅销榜 排行榜
                 let  comicLists:AnyObject = returnData["comicLists"] as AnyObject
                 for i in 0..<comicLists.count{
-                    print("comicLists===",comicLists[i] as AnyObject)
+//                    print("comicLists===",comicLists[i] as AnyObject)
                     let model = comicLists[i] as AnyObject
                     self.comicLists?.add(model)
+                    
                 }
                 /**************Banner********************/
                 self.galleryItems = ((returnData["galleryItems"] as AnyObject) as! [AnyObject])

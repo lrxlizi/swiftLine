@@ -7,45 +7,45 @@
 //
 
 import UIKit
+import SwiftyJSON
+import SwiftyJSONMappable
 
 class PublicModel: NSObject {
 
 }
 
-//struct recommendBannerModel {
-//    var content:String?
-//    var cover : String?
-//    var  ext : [Array<Any>]
-//    var  id : String?
-//    var  linkType : String?
-//    var title  : String?
-//
-//    init(jsonData:AnyObject){
-//        content = jsonData["content"] as? String
-//        cover = jsonData["cover"] as? String
-//        ext = (jsonData["ext"] as? Array)!
-//        id = jsonData["id"] as? String
-//        linkType = jsonData["linkType"] as? String
-//        title = jsonData["title"] as? String
-//    }
-//}
 
-struct recommendComicsListModel {
-    var  comicType : String?
-    var  argName   : String?
-    var  argType   : String?
-    var  argValue  : String?
-    var  canedit   : String?
-    var  comics    : [Array<Any>]?
+/*
+ 带as AnyObject/Any 是具体的value  不加是 Optional(Optional(value))
+ */
+
+
+
+class ListModel : JSONMappable{
+    var  comicType : NSNumber
+    var  argName   : String
+    var  argType   : String
+    var  argValue  : String
+    var  canedit   : String
+    var  comics    : [Comics]?
     
-    init(jsonData:AnyObject){
-        comicType   = jsonData["comicType"] as? String
-        argName     = jsonData["argName"] as? String
-        argType     = jsonData["argType"] as? String
-        argValue    = jsonData["argValue"] as? String
-        canedit     = jsonData["canedit"] as? String
-        comics      = (jsonData["comics"] as? Array)
+    required init(json: JSON) {
+        comicType = json["comicType"].numberValue
+        argName = json["argName"].stringValue
+        argType = json["argType"].stringValue
+        argValue = json["argValue"].stringValue
+        canedit = json["canedit"].stringValue
+        comics = json["comics"].arrayValue.map({ (json) -> Comics in
+            Comics(json: json)
+        })
     }
+}
+
+class Comics : JSONMappable {
+    var cover : String
     
-    
+    required init(json: JSON) {
+        cover = json["cover"].stringValue
+    }
+
 }

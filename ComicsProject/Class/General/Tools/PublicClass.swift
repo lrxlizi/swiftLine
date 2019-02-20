@@ -74,6 +74,24 @@ class PublicClass: NSObject {
         filureBlock = block
     }
     
+    //字典转字符串
+    class  func getJSONStringFromDictionary(dictionary:NSDictionary) -> String {
+        if (!JSONSerialization.isValidJSONObject(dictionary)) {
+            print("无法解析出JSONString")
+            return ""
+        }
+        let data : NSData! = try? JSONSerialization.data(withJSONObject: dictionary, options: []) as NSData!
+        let JSONString = NSString(data:data as Data,encoding: String.Encoding.utf8.rawValue)
+        return JSONString! as String
+        
+    }
+    
+    //字符串转data
+    class func getStringFromData(str:String) ->Data{
+        return str.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!
+    }
+    
+    
 }
 /*
  
