@@ -42,7 +42,6 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         cw.scrollIndicatorInsets = cw.contentInset
         cw.register(CPRecommedTopCell.self , forCellWithReuseIdentifier: "TOPCELL")
         cw.register(CPRecommedCell.self, forCellWithReuseIdentifier: "CELL")
-        
         cw.register(CPRecommedHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerIdentifier")
          cw.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "footIdentifier")
         cw.cpempty = CPEmPtyView(verticalOffset: -(cw.contentInset.top)) { self.initData() }
@@ -65,7 +64,6 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
             $0.top.left.right.equalToSuperview()
             $0.height.equalTo(collectionView.contentInset.top)
         }
-        
         initData()
     }
     
@@ -75,8 +73,8 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         }else{
             return 0
         }
-        
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let dic = self.comicLists![section] as AnyObject
         let comics = dic["comics"] as AnyObject
@@ -85,39 +83,33 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         }else{
             return 0
         }
-        
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let dic = self.comicLists![indexPath.section] as AnyObject
         let comics = dic["comics"] as AnyObject
         let comicType = dic["comicType"] as! NSNumber
         if comicType == 11 {
-        
             let cell : CPRecommedTopCell = collectionView.dequeueReusableCell(withReuseIdentifier:"TOPCELL", for: indexPath)as!CPRecommedTopCell
             cell.setValueCell(dic: comics[indexPath.row])
            return cell
         }
-        
         let cell : CPRecommedCell = collectionView.dequeueReusableCell(withReuseIdentifier:"CELL", for: indexPath)as!CPRecommedCell
         cell.setValueCell(dict: comics[indexPath.row],comicType:comicType)
         return cell
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
          let dic = self.comicLists![indexPath.section] as AnyObject
-        
         if kind == UICollectionView.elementKindSectionHeader{
             let headerView : CPRecommedHeaderReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerIdentifier", for: indexPath) as! CPRecommedHeaderReusableView
             headerView.setValue(dict: dic)
             return headerView
-        
         }else{
             let footView : UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "footIdentifier", for: indexPath)
            footView.backgroundColor = UIColor.background
             return footView
         }
-       
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, backgroundColorForSectionAt section: Int) -> UIColor {
@@ -128,38 +120,17 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         
         let dic = self.comicLists![indexPath.section] as AnyObject
         let comicType = dic["comicType"] as! NSNumber
-//        let comics = dic["comics"] as AnyObject
-//        let dict = comics[indexPath.row] as AnyObject
-//        guard let name = dict["name"] else { return CGSize(width: floor((ScreenWidth-5) / 2.0), height:100) }
         if comicType == 11 {
             let width = floor((ScreenWidth-15) / 4.0)
             return CGSize(width: width, height: 80)
          }else{
-//            if name == nil{
-//                if  comicType == 7 || comicType == 13{
-//                    return CGSize(width: floor((ScreenWidth-10) / 3.0), height:200)
-//                }else{
-//                   return CGSize(width: floor((ScreenWidth-5) / 2.0), height:155)
-//                }
-//
-//            }else{
-//                if  comicType == 7 || comicType == 13{
-//                    return CGSize(width: floor((ScreenWidth-10) / 3.0), height:250)
-//                }else{
-//                    return CGSize(width: floor((ScreenWidth-5) / 2.0), height:155)
-//                }
-//
-//            }
-            
             if  comicType == 7 || comicType == 13{
                 return CGSize(width: floor((ScreenWidth-10) / 3.0), height:250)
             }else{
                 return CGSize(width: floor((ScreenWidth-5) / 2.0), height:155)
             }
         }
-       
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
        let dict = self.comicLists![section] as AnyObject
@@ -169,7 +140,6 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         }else{
             return CGSize(width: ScreenWidth, height: 50)
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -198,7 +168,6 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
 //                    print("comicLists===",comicLists[i] as AnyObject)
                     let model = comicLists[i] as AnyObject
                     self.comicLists?.add(model)
-                    
                 }
                 /**************Banner********************/
                 self.galleryItems = ((returnData["galleryItems"] as AnyObject) as! [AnyObject])
