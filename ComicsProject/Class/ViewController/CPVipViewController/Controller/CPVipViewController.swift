@@ -40,7 +40,7 @@ class CPVipViewController: CPBaseViewController {
         
                 let All:AnyObject = (allData["data"]) as AnyObject
                 let returnData:AnyObject = All["returnData"] as AnyObject
-                //周榜 VIP榜 畅销榜 排行榜
+                
                 let  comicLists = returnData["comicLists"] as AnyObject
                 for i in 0..<comicLists.count{
                     let dic = comicLists[i] as AnyObject

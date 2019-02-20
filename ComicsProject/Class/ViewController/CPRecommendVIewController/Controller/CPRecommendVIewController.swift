@@ -34,18 +34,18 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 5
         let cw = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cw.backgroundColor = UIColor.red
+        cw.backgroundColor = UIColor.background
         cw.delegate = self
         cw.dataSource = self
         cw.alwaysBounceVertical = true
-//        cw.contentInset = UIEdgeInsets(top: SCREEN_WIDTH * 0.467, left: 0, bottom: 0, right: 0)
-//        cw.scrollIndicatorInsets = cw.contentInset
+        cw.contentInset = UIEdgeInsets(top: SCREEN_WIDTH * 0.467, left: 0, bottom: 0, right: 0)
+        cw.scrollIndicatorInsets = cw.contentInset
         cw.register(CPRecommedTopCell.self , forCellWithReuseIdentifier: "TOPCELL")
         cw.register(CPRecommedCell.self, forCellWithReuseIdentifier: "CELL")
         
         cw.register(CPRecommedHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerIdentifier")
          cw.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "footIdentifier")
-        //
+        cw.cpempty = CPEmPtyView(verticalOffset: -(cw.contentInset.top)) { self.initData() }
         return cw
     }()
     
@@ -55,16 +55,17 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
          self.view.backgroundColor = UIColor.yellow
         comicLists = NSMutableArray.init()
         
-        self.view .addSubview(banner)
-        banner.snp.makeConstraints { (make) in
-            make.left.top.right.equalTo(0)
-            make.height.equalTo(200)
+        view.addSubview(collectionView)
+        collectionView.snp.makeConstraints{
+            $0.edges.equalToSuperview()
         }
-        self.view.addSubview(collectionView)
-        collectionView.snp.makeConstraints { (make) in
-            make.left.bottom.right.equalTo(0)
-            make.top.equalTo(banner.snp.bottom)
+        
+        view.addSubview(banner)
+        banner.snp.makeConstraints{
+            $0.top.left.right.equalToSuperview()
+            $0.height.equalTo(collectionView.contentInset.top)
         }
+        
         initData()
     }
     
@@ -168,6 +169,7 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
     func initData(){
         PublicClass.netWorking(path: .recommend(sexType: 1))
         PublicClass.getSuccessBlock { (data) in
+           
             let allData:AnyObject = data as AnyObject
             //            print("all==",allData)
             let code:NSNumber = allData["code"] as! NSNumber
@@ -191,12 +193,15 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
                 }
                 self.banner.imagePaths = gallerArr as! Array<String>
                  /**************Banner********************/
-                self.collectionView.reloadData()
+            }else{
+                self.collectionView.cpempty?.allowShow = true
             }
+            self.collectionView.reloadData()
         }
         PublicClass.getFilureBlock { (error) in
             print("error==",error)
-            
+            self.collectionView.cpempty?.allowShow = true
+             self.collectionView.reloadData()
         }
     }
     
