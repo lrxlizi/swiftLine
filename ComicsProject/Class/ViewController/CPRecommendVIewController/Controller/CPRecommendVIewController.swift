@@ -128,27 +128,33 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         
         let dic = self.comicLists![indexPath.section] as AnyObject
         let comicType = dic["comicType"] as! NSNumber
-        let comics = dic["comics"] as AnyObject
-        let dict = comics[indexPath.row] as AnyObject
-        guard let name = dict["name"] else { return CGSize(width: floor((ScreenWidth-5) / 2.0), height:100) }
+//        let comics = dic["comics"] as AnyObject
+//        let dict = comics[indexPath.row] as AnyObject
+//        guard let name = dict["name"] else { return CGSize(width: floor((ScreenWidth-5) / 2.0), height:100) }
         if comicType == 11 {
             let width = floor((ScreenWidth-15) / 4.0)
             return CGSize(width: width, height: 80)
          }else{
-            if name == nil{
-                if  comicType == 7 || comicType == 13{
-                    return CGSize(width: floor((ScreenWidth-10) / 3.0), height:200)
-                }else{
-                   return CGSize(width: floor((ScreenWidth-5) / 2.0), height:155)
-                }
-                
-            }else{
-                if  comicType == 7 || comicType == 13{
-                    return CGSize(width: floor((ScreenWidth-10) / 3.0), height:250)
-                }else{
-                    return CGSize(width: floor((ScreenWidth-5) / 2.0), height:155)
-                }
+//            if name == nil{
+//                if  comicType == 7 || comicType == 13{
+//                    return CGSize(width: floor((ScreenWidth-10) / 3.0), height:200)
+//                }else{
+//                   return CGSize(width: floor((ScreenWidth-5) / 2.0), height:155)
+//                }
+//
+//            }else{
+//                if  comicType == 7 || comicType == 13{
+//                    return CGSize(width: floor((ScreenWidth-10) / 3.0), height:250)
+//                }else{
+//                    return CGSize(width: floor((ScreenWidth-5) / 2.0), height:155)
+//                }
+//
+//            }
             
+            if  comicType == 7 || comicType == 13{
+                return CGSize(width: floor((ScreenWidth-10) / 3.0), height:250)
+            }else{
+                return CGSize(width: floor((ScreenWidth-5) / 2.0), height:155)
             }
         }
        
