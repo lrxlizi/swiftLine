@@ -23,4 +23,14 @@ let  SCREEN_WIDTH = UIScreen.main.bounds.width
 
 let  SCREEN_HEIGH = UIScreen.main.bounds.height
 
+let bundle = Bundle(path: Bundle.main.path(forResource: "ComicsProject.bundle", ofType: nil) ?? "")
 
+public func imageNamed(_ name:String)-> UIImage{
+    
+    guard let image = UIImage(named: name, in: bundle, compatibleWith: nil) else{
+        return UIImage()
+    }
+    
+    return image
+    
+}

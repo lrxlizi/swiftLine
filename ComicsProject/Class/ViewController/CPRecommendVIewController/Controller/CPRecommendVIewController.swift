@@ -51,7 +51,7 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
     override func viewDidLoad() {
         super.viewDidLoad()
 
-         self.view.backgroundColor = UIColor.yellow
+        self.view.backgroundColor = UIColor.yellow
         comicLists = NSMutableArray.init()
         
         view.addSubview(collectionView)
@@ -117,7 +117,6 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let dic = self.comicLists![indexPath.section] as AnyObject
         let comicType = dic["comicType"] as! NSNumber
         if comicType == 11 {
@@ -155,21 +154,18 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
     func initData(){
         PublicClass.netWorking(path: .recommend(sexType: 1))
         PublicClass.getSuccessBlock { (data) in
-           
             let allData:AnyObject = data as AnyObject
-            //            print("all==",allData)
             let code:NSNumber = allData["code"] as! NSNumber
             if code  == 1 {
                 let All:AnyObject = (allData["data"]) as AnyObject
                 let returnData:AnyObject = All["returnData"] as AnyObject
-                //周榜 VIP榜 畅销榜 排行榜
-                let  comicLists:AnyObject = returnData["comicLists"] as AnyObject
+                //列表
+                let comicLists:AnyObject = returnData["comicLists"] as AnyObject
                 for i in 0..<comicLists.count{
-//                    print("comicLists===",comicLists[i] as AnyObject)
                     let model = comicLists[i] as AnyObject
                     self.comicLists?.add(model)
                 }
-                /**************Banner********************/
+                //banner
                 self.galleryItems = ((returnData["galleryItems"] as AnyObject) as! [AnyObject])
                 let gallerArr = NSMutableArray.init()
                 for index in 0..<self.galleryItems.count{
@@ -177,7 +173,6 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
                     gallerArr .add(cover as Any)
                 }
                 self.banner.imagePaths = gallerArr as! Array<String>
-                 /**************Banner********************/
             }else{
                 self.collectionView.cpempty?.allowShow = true
             }
@@ -185,7 +180,7 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         }
         PublicClass.getFilureBlock { (error) in
             print("error==",error)
-            //请求失败添加t空白页
+            //请求失败添加空白页
             self.collectionView.cpempty?.allowShow = true
             self.collectionView.reloadData()
         }
@@ -197,7 +192,6 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         let linkType:NSNumber = dic["linkType"] as! NSNumber
         let  ext = dic["ext"] as AnyObject
         let item = ext[0] as AnyObject
-//        let key:String = item["key"] as! String
         let val:String = item["val"] as! String
         if linkType == 2 {
 //            let web = CPWebViewController(url:key)

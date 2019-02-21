@@ -26,6 +26,7 @@ class CPVipViewController: CPBaseViewController {
         self.view.backgroundColor = UIColor.red
         dataSource = NSMutableArray.init()
         initData()
+        
     }
     
 
@@ -45,7 +46,7 @@ class CPVipViewController: CPBaseViewController {
                 for i in 0..<comicLists.count{
                     let dic = comicLists[i] as AnyObject
                     let dicJson = PublicClass.getJSONStringFromDictionary(dictionary: dic as! NSDictionary)
-                    let da = PublicClass.getStringFromData(str: dicJson) //字符串转data
+                    let da = PublicClass.getStringtoData(str: dicJson) //字符串转data
                     let json = JSON(data: da)//转成JSON
                     let model = ListModel(json: json)
                     self.dataSource?.add(model)
@@ -55,8 +56,6 @@ class CPVipViewController: CPBaseViewController {
                     let model:ListModel = self.dataSource![j] as! ListModel
                     print("model.argName===",model.comics)
                 }
-                
-                
                
             }
         }

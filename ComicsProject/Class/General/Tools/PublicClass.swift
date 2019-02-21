@@ -19,6 +19,7 @@ typealias filureStrBlock = (Any) -> ()
 var filureBlock: filureStrBlock?
 
 
+
 //数据请求时的loading加载
 let LoadingPlugin = NetworkActivityPlugin { (type, target) in
     guard let vc = topVC else { return }
@@ -63,7 +64,6 @@ class PublicClass: NSObject {
         }
     }
     
-  
     class  func getSuccessBlock(block: successBlock?) {
         succBlock = block
     }
@@ -85,10 +85,24 @@ class PublicClass: NSObject {
     }
     
     //字符串转data
-    class func getStringFromData(str:String) ->Data{
+    class func getStringtoData(str:String) ->Data{
         return str.data(using: String.Encoding(rawValue: String.Encoding.utf8.rawValue))!
     }
     
+    //计算富文本的高度
+    class func attributedTextHeight(text: NSAttributedString, width: CGFloat) -> CGFloat {
+        return text.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, context: nil).size.height + 5.0
+    }
+    
+    //计算文本的高度
+    class func textHeight(text: String, fontSize: CGFloat, width: CGFloat) -> CGFloat {
+        return text.boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [.font: UIFont.systemFont(ofSize: fontSize)], context: nil).size.height
+    }
+    
+    //计算文本的宽度
+    class func textHieght(text: String, fontSize: CGFloat, height: CGFloat) -> CGFloat {
+        return text.boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: height), options: .usesLineFragmentOrigin, attributes: [.font: UIFont.systemFont(ofSize: fontSize)], context: nil).size.height
+    }
     
 }
 /*

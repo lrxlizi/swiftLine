@@ -33,6 +33,8 @@ extension NSNotification.Name {
 
 let ScreenWidth = UIScreen.main.bounds.width
 let ScreenHeight = UIScreen.main.bounds.height
+let statusHeight = UIApplication.shared.statusBarFrame.height
+
 
 var topVC: UIViewController? {
     var resultVC: UIViewController?
