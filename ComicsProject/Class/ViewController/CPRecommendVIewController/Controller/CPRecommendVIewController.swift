@@ -43,7 +43,7 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         cw.register(CPRecommedTopCell.self , forCellWithReuseIdentifier: "TOPCELL")
         cw.register(CPRecommedCell.self, forCellWithReuseIdentifier: "CELL")
         cw.register(CPRecommedHeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerIdentifier")
-         cw.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "footIdentifier")
+        cw.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "footIdentifier")
         cw.cpempty = CPEmPtyView(verticalOffset: -(cw.contentInset.top)) { self.initData() }
         return cw
     }()
@@ -186,7 +186,6 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         }
     }
     
-    
      private func didSelectBanner(index:NSInteger){
         let dic = self.galleryItems[index]
         let linkType:NSNumber = dic["linkType"] as! NSNumber
@@ -194,8 +193,10 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         let item = ext[0] as AnyObject
         let val:String = item["val"] as! String
         if linkType == 2 {
-//            let web = CPWebViewController(url:key)
-//            self.navigationController?.pushViewController(web, animated: true)
+            /*
+             let web = CPWebViewController(url:key)
+             self.navigationController?.pushViewController(web, animated: true)
+             */
         }else{
             let detail = CPBannerDetailViewController(comicid: val)
             self.navigationController?.pushViewController(detail, animated: true)

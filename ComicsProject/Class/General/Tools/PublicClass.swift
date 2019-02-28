@@ -42,8 +42,15 @@ let timeoutClosure = {(endpoint: Endpoint, closure: MoyaProvider<UAPI>.RequestRe
     }
 }
 
+
+
 class PublicClass: NSObject {
 
+    /*
+     一下三种网络请求方式建议使用第二种
+     */
+    
+    /*网络请求方式一*/
     class func netWorking(path:UAPI){
         // requestClosure请求时间 plugins插件 
         MoyaProvider<UAPI>(requestClosure: timeoutClosure,plugins: [LoadingPlugin]).request(path) { (result) in
@@ -72,6 +79,53 @@ class PublicClass: NSObject {
         filureBlock = block
     }
     
+    /*网络请求方式二*/
+    class func lzNetWorkingPath(path:UAPI, successBlock: @escaping (_ result : AnyObject)->(), faulureBlock: @escaping (_ result : AnyObject)->()) -> (){
+        MoyaProvider<UAPI>(requestClosure: timeoutClosure,plugins: [LoadingPlugin]).request(path) { (result) in
+            switch result {
+            case let .success(response):
+                do {
+                    let httpBin = (try! response.mapJSON()) as AnyObject
+                    successBlock(httpBin)
+                }
+            case let .failure(error):
+                faulureBlock(error as AnyObject)
+            }
+        }
+    }
+    
+    /*
+     网络请求方式三
+     Alamofire.request("http://app.u17.com/v3/appV3_3/ios/phone/comic/boutiqueListNew", method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
+         if(response.error == nil){
+         print("请求成功==",response.result.value as  AnyObject)
+         self.loadData(completetion: { (success) in
+         print("成功====",success)
+         }, faulure: { (failure) in
+         print("失败===",failure)
+         })
+     
+         }else{
+         print("请求失败\(String(describing: response.error))")
+         }
+     }
+     */
+    
+    
+    class func textFunc(success:(String)->()){
+        success("1122")
+    }
+   class func loadDate(completion: @escaping (_ result : String)->()) -> () {
+        completion("ggggg")
+    }
+    /**
+     func loadData(completetion: @escaping (_ result : String)->(), faulure: @escaping (_ result : String)->()) -> () {
+     completetion("这是啥")
+     faulure("失败")
+     }
+
+     
+     */
     //字典转字符串
     class  func getJSONStringFromDictionary(dictionary:NSDictionary) -> String {
         if (!JSONSerialization.isValidJSONObject(dictionary)) {

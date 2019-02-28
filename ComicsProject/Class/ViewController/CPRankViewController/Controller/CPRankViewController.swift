@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class CPRankViewController: CPBaseViewController {
 
@@ -14,7 +15,29 @@ class CPRankViewController: CPBaseViewController {
         super.viewDidLoad()
 
          self.view.backgroundColor = UIColor.cyan
+        
+        
+        
+       
+        
+        PublicClass.lzNetWorkingPath(path: .recommend(sexType: 1), successBlock: { (data) in
+            print("data==1==",data)
+        }) { (error) in
+            print("error==",error)
+        }
+        
     }
     
+//    func loadData(completetion: @escaping (_ result : String)->(), faulure: @escaping (_ result : String)->()) -> () {
+//        completetion("这是啥")
+//        faulure("失败")
+//    }
 
+    /*
+     不带参数
+     func loadData(completetion: ()->()) -> () {
+     completetion()
+     }
+     //样式
+     */
 }
