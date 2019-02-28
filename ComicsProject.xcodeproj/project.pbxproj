@@ -53,6 +53,8 @@
 		6A309476221BDECE002113CC /* UCollectionViewSectionBackgroundLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A309474221BDECE002113CC /* UCollectionViewSectionBackgroundLayout.swift */; };
 		6A309478221BF2DF002113CC /* CPRecommedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A309477221BF2DF002113CC /* CPRecommedCell.swift */; };
 		6A30947A221C42E9002113CC /* CPRecommedHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A309479221C42E9002113CC /* CPRecommedHeaderReusableView.swift */; };
+		6AA014FB2227D25500744128 /* CPRecommendMoreList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA014FA2227D25500744128 /* CPRecommendMoreList.swift */; };
+		6AA014FD2227DD4300744128 /* CPRecommendMoreListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA014FC2227DD4300744128 /* CPRecommendMoreListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,8 @@
 		6A309474221BDECE002113CC /* UCollectionViewSectionBackgroundLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UCollectionViewSectionBackgroundLayout.swift; sourceTree = "<group>"; };
 		6A309477221BF2DF002113CC /* CPRecommedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPRecommedCell.swift; sourceTree = "<group>"; };
 		6A309479221C42E9002113CC /* CPRecommedHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPRecommedHeaderReusableView.swift; sourceTree = "<group>"; };
+		6AA014FA2227D25500744128 /* CPRecommendMoreList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPRecommendMoreList.swift; sourceTree = "<group>"; };
+		6AA014FC2227DD4300744128 /* CPRecommendMoreListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPRecommendMoreListCell.swift; sourceTree = "<group>"; };
 		EDBF19BE242FC561B218E707 /* Pods-ComicsProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComicsProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ComicsProject/Pods-ComicsProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -495,6 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				6A309456221BB017002113CC /* CPRecommendVIewController.swift */,
+				6AA014FA2227D25500744128 /* CPRecommendMoreList.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -513,6 +518,7 @@
 				6A309470221BD9C2002113CC /* CPRecommedTopCell.swift */,
 				6A309477221BF2DF002113CC /* CPRecommedCell.swift */,
 				6A309479221C42E9002113CC /* CPRecommedHeaderReusableView.swift */,
+				6AA014FC2227DD4300744128 /* CPRecommendMoreListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -759,6 +765,7 @@
 				6A309471221BD9C2002113CC /* CPRecommedTopCell.swift in Sources */,
 				6A30942D221AADBE002113CC /* CPHomePageViewController.swift in Sources */,
 				6A3093F1221A9E7D002113CC /* AppDelegate.swift in Sources */,
+				6AA014FB2227D25500744128 /* CPRecommendMoreList.swift in Sources */,
 				6A309449221ABE67002113CC /* EmptyDataSet.swift in Sources */,
 				6A309440221ABA29002113CC /* UIBarButtonItemFixSpace.swift in Sources */,
 				6A309461221BB250002113CC /* MacroTool.swift in Sources */,
@@ -781,6 +788,7 @@
 				6A095E1A221E794A000B6C88 /* CPScananimationStyle.swift in Sources */,
 				6A095E2F221E7DD4000B6C88 /* CameraVC.swift in Sources */,
 				6A30944B221BA610002113CC /* CPSegmentedViewController.swift in Sources */,
+				6AA014FD2227DD4300744128 /* CPRecommendMoreListCell.swift in Sources */,
 				6A309457221BB017002113CC /* CPRecommendVIewController.swift in Sources */,
 				6A095E2C221E7AA3000B6C88 /* AVMetadataObject+Extensions.swift in Sources */,
 				6A30943A221AB743002113CC /* Global.swift in Sources */,

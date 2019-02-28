@@ -78,8 +78,23 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let dic = self.comicLists![section] as AnyObject
         let comics = dic["comics"] as AnyObject
+        let comicType = dic["comicType"] as! NSNumber
         if comics.count>0{
-            return comics.count
+            if (comicType == 7 || comicType == 13){
+                if ( comics.count > 6){
+                    return 6
+                }else{
+                    return comics.count
+                }
+            }else if (comicType == 11){
+                return comics.count
+            }else{
+                if (comics.count > 4){
+                    return 4
+                }else{
+                    return comics.count
+                }
+            }
         }else{
             return 0
         }
@@ -101,9 +116,21 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
          let dic = self.comicLists![indexPath.section] as AnyObject
+
+        
         if kind == UICollectionView.elementKindSectionHeader{
             let headerView : CPRecommedHeaderReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerIdentifier", for: indexPath) as! CPRecommedHeaderReusableView
             headerView.setValue(dict: dic)
+            headerView.moreActionClosure {[weak self] in
+                let vc = CPRecommendMoreList(param:dic)
+                guard let name = dic["itemTitle"] else {return}
+                if name == nil{
+                    vc.title = ""
+                }else{
+                    vc.title = (dic["itemTitle"] as! String)
+                }
+                self!.navigationController?.pushViewController(vc, animated: true)
+            }
             return headerView
         }else{
             let footView : UICollectionReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "footIdentifier", for: indexPath)
@@ -151,6 +178,7 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         }
     }
     
+   
     func initData(){
         PublicClass.netWorking(path: .recommend(sexType: 1))
         PublicClass.getSuccessBlock { (data) in

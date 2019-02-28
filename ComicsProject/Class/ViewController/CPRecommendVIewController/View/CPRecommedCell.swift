@@ -26,7 +26,7 @@ class CPRecommedCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.backgroundColor = UIColor.red
+        iv.backgroundColor = UIColor.white
         return iv
         
     }()
@@ -48,9 +48,6 @@ class CPRecommedCell: UICollectionViewCell {
     }()
     
     func configUI(){
-        
-        
-       
         self.contentView .addSubview(subNameLB)
         subNameLB.snp.makeConstraints { (make) in
             make.left.equalTo(10)
@@ -78,28 +75,6 @@ class CPRecommedCell: UICollectionViewCell {
     }
     func setValueCell(dict:AnyObject ,comicType:NSNumber){
        
-//        if comicType == 5 {
-//
-//            subNameLB.snp.updateConstraints { (make) in
-//                make.height.equalTo(0)
-//            }
-//            nameLB.snp.updateConstraints { (make) in
-//                make.bottom.equalTo(subNameLB.snp.top).offset(0)
-//                make.height.equalTo(0)
-//            }
-//        }else{
-//
-//            subNameLB.snp.updateConstraints { (make) in
-//                make.height.equalTo(12)
-//            }
-//
-//            nameLB.snp.updateConstraints { (make) in
-//                make.bottom.equalTo(subNameLB.snp.top).offset(-7)
-//                make.height.equalTo(16)
-//            }
-//
-//
-//        }
         iconVIew.kf.setImage(urlString: (dict["cover"] as! String))
         
         guard let name = dict["name"] else {return}

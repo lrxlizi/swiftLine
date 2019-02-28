@@ -20,6 +20,7 @@ import SwiftyJSONMappable
 
 class CPVipViewController: CPBaseViewController {
  var dataSource : NSMutableArray?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -49,3 +49,33 @@ class Comics : JSONMappable {
     }
 
 }
+
+
+class recommedMoreListModel : JSONMappable{
+    
+    var  author            : String
+    var  comicId           : NSNumber
+    var  conTag            : NSNumber
+    var  cover             : String
+    var  description       : String
+    var  flag              : NSNumber
+    var  is_vip            : NSNumber
+    var  name              : String
+    var  short_description : String
+    var  tags              : Array<Any>
+    required init(json: JSON) {
+        author = json["author"].stringValue
+        comicId = json["comicId"].numberValue
+        conTag = json["conTag"].numberValue
+        cover = json["cover"].stringValue
+        description = json["description"].stringValue
+        flag = json["flag"].numberValue
+        is_vip = json["is_vip"].numberValue
+        name = json["name"].stringValue
+        short_description = json["short_description"].stringValue
+        tags = json["tags"].arrayObject!
+    }
+    
+    
+    
+}

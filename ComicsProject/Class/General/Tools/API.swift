@@ -15,6 +15,7 @@ enum UAPI{
     case homePage
     case discover
     case recommend(sexType: Int)//推荐列表
+    case comicList(argCon: Int, argName: String, argValue: Int, page: Int)//漫画列表(首页推荐列表)
 }
 
 extension UAPI: TargetType{
@@ -38,7 +39,12 @@ extension UAPI: TargetType{
             parmeters["sexType"] = sexType
             parmeters["v"] = 3320101
             
-       
+        case .comicList(let argCon, let argName, let argValue, let page):
+            parmeters["argCon"] = argCon
+            if argName.count > 0 { parmeters["argName"] = argName }
+            parmeters["argValue"] = argValue
+            parmeters["page"] = max(1, page)
+            
         default: break
         }
         
@@ -64,6 +70,8 @@ extension UAPI: TargetType{
             return "discover"
         case .recommend:
            return "comic/boutiqueListNew"
+        case .comicList:
+            return "list/commonComicList"
         }
     }
     
