@@ -55,7 +55,7 @@ class CPVipViewController: CPBaseViewController {
                 
                 for j in 0..<self.dataSource!.count{
                     let model:ListModel = self.dataSource![j] as! ListModel
-                    print("model.argName===",model.comics)
+//                    print("model.argName===",model.comics)
                 }
                
             }

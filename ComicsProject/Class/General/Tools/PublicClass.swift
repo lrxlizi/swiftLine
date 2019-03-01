@@ -22,20 +22,20 @@ var filureBlock: filureStrBlock?
 
 //数据请求时的loading加载
 let LoadingPlugin = NetworkActivityPlugin { (type, target) in
-    guard let vc = topVC else { return }
-    switch type {
-    case .began:
-        MBProgressHUD.hide(for: vc.view, animated: false)
-        MBProgressHUD.showAdded(to: vc.view, animated: true)
-    case .ended:
-        MBProgressHUD.hide(for: vc.view, animated: true)
-    }
+//    guard let vc = topVC else { return }
+//    switch type {
+//    case .began:
+//        MBProgressHUD.hide(for: vc.view, animated: false)
+//        MBProgressHUD.showAdded(to: vc.view, animated: true)
+//    case .ended:
+//        MBProgressHUD.hide(for: vc.view, animated: true)
+//    }
 }
 //请求时间
 let timeoutClosure = {(endpoint: Endpoint, closure: MoyaProvider<UAPI>.RequestResultClosure) -> Void in
     
     if var urlRequest = try? endpoint.urlRequest() {
-        urlRequest.timeoutInterval = 20
+        urlRequest.timeoutInterval = 10
         closure(.success(urlRequest))
     } else {
         closure(.failure(MoyaError.requestMapping(endpoint.url)))

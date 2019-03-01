@@ -30,15 +30,18 @@ class CPRecommendMoreList: CPBaseViewController,UITableViewDelegate,UITableViewD
         }
         
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (self.dataSource?.count)!>0 {
             return (self.dataSource?.count)!
         }
         return 0
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model:recommedMoreListModel = self.dataSource![indexPath.row] as! recommedMoreListModel
         var cell:CPRecommendMoreListCell = tableView.dequeueReusableCell(withIdentifier: "MORECELL") as! CPRecommendMoreListCell
@@ -46,8 +49,7 @@ class CPRecommendMoreList: CPBaseViewController,UITableViewDelegate,UITableViewD
             cell =  CPRecommendMoreListCell.init(style: UITableViewCell.CellStyle.default, reuseIdentifier: "MORECELL")
         }
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        cell.model = model
-//        cell.cellForModel(dict: model)
+        cell.model = model //cell.cellForModel(dict: model)
         return cell
     }
     
@@ -55,6 +57,7 @@ class CPRecommendMoreList: CPBaseViewController,UITableViewDelegate,UITableViewD
        return 180
         
     }
+    
     private lazy var tableView:UITableView = {
         let tb = UITableView()
         tb.backgroundColor = UIColor.background
@@ -62,6 +65,7 @@ class CPRecommendMoreList: CPBaseViewController,UITableViewDelegate,UITableViewD
         tb.dataSource = self
         tb.register(CPRecommendMoreListCell.self, forCellReuseIdentifier: "MORECELL")
         tb.tableFooterView = UIView.init()
+        tb.cpempty = CPEmPtyView(verticalOffset: -(tb.contentInset.top)) { self.initData() }
         return tb
     }()
     
@@ -88,13 +92,17 @@ class CPRecommendMoreList: CPBaseViewController,UITableViewDelegate,UITableViewD
             }else{
                 self.argName = ((argName as AnyObject) as! String)
             }
+     
+        initData()
+    }
+    
+    func initData(){
         
         PublicClass.lzNetWorkingPath(path: .comicList(argCon:self.argCon, argName: self.argName ?? "", argValue: self.argValue, page: self.page), successBlock: { (data) in
             
             let allData:AnyObject = data as AnyObject
             let code:NSNumber = allData["code"] as! NSNumber
             if code  == 1 {
-                print("data==",allData)
                 let All:AnyObject = (allData["data"]) as AnyObject
                 let returnData:AnyObject = All["returnData"] as AnyObject
                 let  comicLists = returnData["comics"] as AnyObject
@@ -105,13 +113,16 @@ class CPRecommendMoreList: CPBaseViewController,UITableViewDelegate,UITableViewD
                     let json = JSON(data: da)//转成JSON
                     let model = recommedMoreListModel(json: json)
                     self.dataSource?.add(model)
-                    self.tableView.reloadData()
+                   
                 }
+            }else{
+                  self.tableView.cpempty?.allowShow = true
             }
+             self.tableView.reloadData()
         }) { (error) in
-            
+             self.tableView.cpempty?.allowShow = true
+             self.tableView.reloadData()
         }
-        
     }
     
 

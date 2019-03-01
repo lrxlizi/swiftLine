@@ -11,6 +11,7 @@ import LLCycleScrollView
 import Reusable
 
 
+
 class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,UICollectionViewDataSource,UCollectionViewSectionBackgroundLayoutDelegateLayout {
 
     var galleryItems = Array<AnyObject>()
@@ -231,5 +232,5 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         }
         
     }
-
+   
 }
