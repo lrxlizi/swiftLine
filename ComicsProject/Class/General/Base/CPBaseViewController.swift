@@ -28,8 +28,8 @@ class CPBaseViewController: UIViewController {
         configUI()
         
     }
-    func configUI(){}
     
+    func configUI(){}
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -49,6 +49,7 @@ class CPBaseViewController: UIViewController {
                 navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "nav_back_white")?.withRenderingMode(.alwaysOriginal), style: UIBarButtonItem.Style.done, target: self, action: #selector(pressBack))
             }
         }
+        
     }
     
    @objc func pressBack(){
@@ -56,7 +57,6 @@ class CPBaseViewController: UIViewController {
     }
     
 }
-
 
 extension CPBaseViewController{
     override var preferredStatusBarStyle:UIStatusBarStyle{

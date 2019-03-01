@@ -66,6 +66,11 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
             $0.height.equalTo(collectionView.contentInset.top)
         }
         initData()
+        
+        UserDefaults.standard.set(1, forKey: String.sexTypeKey)
+        UserDefaults.standard.synchronize()
+        NotificationCenter.default.post(name: .USexTypeDidChange, object: nil)
+        
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -179,8 +184,8 @@ class CPRecommendVIewController: CPBaseViewController,UICollectionViewDelegate,U
         }
     }
     
-   
     func initData(){
+       
         PublicClass.netWorking(path: .recommend(sexType: 1))
         PublicClass.getSuccessBlock { (data) in
             let allData:AnyObject = data as AnyObject

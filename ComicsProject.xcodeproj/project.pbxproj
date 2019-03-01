@@ -55,6 +55,10 @@
 		6A30947A221C42E9002113CC /* CPRecommedHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A309479221C42E9002113CC /* CPRecommedHeaderReusableView.swift */; };
 		6AA014FB2227D25500744128 /* CPRecommendMoreList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA014FA2227D25500744128 /* CPRecommendMoreList.swift */; };
 		6AA014FD2227DD4300744128 /* CPRecommendMoreListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA014FC2227DD4300744128 /* CPRecommendMoreListCell.swift */; };
+		6AA015002229128D00744128 /* CPMYHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA014FF2229128D00744128 /* CPMYHeaderView.swift */; };
+		6AA015052229162B00744128 /* ParallaxHeaderMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA015022229162B00744128 /* ParallaxHeaderMode.swift */; };
+		6AA015062229162B00744128 /* UIScrollView+ParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA015032229162B00744128 /* UIScrollView+ParallaxHeader.swift */; };
+		6AA015072229162B00744128 /* ParallaxHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA015042229162B00744128 /* ParallaxHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +125,10 @@
 		6A309479221C42E9002113CC /* CPRecommedHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPRecommedHeaderReusableView.swift; sourceTree = "<group>"; };
 		6AA014FA2227D25500744128 /* CPRecommendMoreList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPRecommendMoreList.swift; sourceTree = "<group>"; };
 		6AA014FC2227DD4300744128 /* CPRecommendMoreListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPRecommendMoreListCell.swift; sourceTree = "<group>"; };
+		6AA014FF2229128D00744128 /* CPMYHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPMYHeaderView.swift; sourceTree = "<group>"; };
+		6AA015022229162B00744128 /* ParallaxHeaderMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParallaxHeaderMode.swift; sourceTree = "<group>"; };
+		6AA015032229162B00744128 /* UIScrollView+ParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+ParallaxHeader.swift"; sourceTree = "<group>"; };
+		6AA015042229162B00744128 /* ParallaxHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParallaxHeader.swift; sourceTree = "<group>"; };
 		EDBF19BE242FC561B218E707 /* Pods-ComicsProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComicsProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ComicsProject/Pods-ComicsProject.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -326,6 +334,7 @@
 		6A309418221AA038002113CC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				6AA015012229162B00744128 /* ParallaxHeader */,
 				6A309472221BDECE002113CC /* CollectionViewLayout */,
 				6A30945D221BB24F002113CC /* API.swift */,
 				6A30945E221BB24F002113CC /* MacroTool.swift */,
@@ -383,6 +392,7 @@
 		6A309420221AAD06002113CC /* CPMyViewController */ = {
 			isa = PBXGroup;
 			children = (
+				6AA014FE22290EEF00744128 /* view */,
 				6A309434221AAE0F002113CC /* Controller */,
 			);
 			path = CPMyViewController;
@@ -571,6 +581,24 @@
 			path = CollectionViewLayout;
 			sourceTree = "<group>";
 		};
+		6AA014FE22290EEF00744128 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				6AA014FF2229128D00744128 /* CPMYHeaderView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		6AA015012229162B00744128 /* ParallaxHeader */ = {
+			isa = PBXGroup;
+			children = (
+				6AA015022229162B00744128 /* ParallaxHeaderMode.swift */,
+				6AA015032229162B00744128 /* UIScrollView+ParallaxHeader.swift */,
+				6AA015042229162B00744128 /* ParallaxHeader.swift */,
+			);
+			path = ParallaxHeader;
+			sourceTree = "<group>";
+		};
 		DF46FD47387D013831946B40 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -756,6 +784,7 @@
 				6A095E2A221E7AA3000B6C88 /* UIImage+Extensions.swift in Sources */,
 				6A095E2B221E7AA3000B6C88 /* ScanAnimation.swift in Sources */,
 				6A3093F3221A9E7D002113CC /* ViewController.swift in Sources */,
+				6AA015062229162B00744128 /* UIScrollView+ParallaxHeader.swift in Sources */,
 				6A30945F221BB250002113CC /* PublicClass.swift in Sources */,
 				6A309442221ABA89002113CC /* DispatchQueueExtension.swift in Sources */,
 				6A309436221AAE0F002113CC /* CPMyViewController.swift in Sources */,
@@ -777,6 +806,7 @@
 				6A30946B221BD35C002113CC /* CPBannerDetailViewController.swift in Sources */,
 				6A309476221BDECE002113CC /* UCollectionViewSectionBackgroundLayout.swift in Sources */,
 				6A30943D221AB77A002113CC /* UIColorExtension.swift in Sources */,
+				6AA015002229128D00744128 /* CPMYHeaderView.swift in Sources */,
 				6A095E20221E79D3000B6C88 /* CPTorchMode.swift in Sources */,
 				6A30945B221BB02D002113CC /* CPVipViewController.swift in Sources */,
 				6A30947A221C42E9002113CC /* CPRecommedHeaderReusableView.swift in Sources */,
@@ -789,10 +819,12 @@
 				6A095E2F221E7DD4000B6C88 /* CameraVC.swift in Sources */,
 				6A30944B221BA610002113CC /* CPSegmentedViewController.swift in Sources */,
 				6AA014FD2227DD4300744128 /* CPRecommendMoreListCell.swift in Sources */,
+				6AA015072229162B00744128 /* ParallaxHeader.swift in Sources */,
 				6A309457221BB017002113CC /* CPRecommendVIewController.swift in Sources */,
 				6A095E2C221E7AA3000B6C88 /* AVMetadataObject+Extensions.swift in Sources */,
 				6A30943A221AB743002113CC /* Global.swift in Sources */,
 				6A095E12221E7799000B6C88 /* CPScanViewController.swift in Sources */,
+				6AA015052229162B00744128 /* ParallaxHeaderMode.swift in Sources */,
 				6A309459221BB022002113CC /* CPSubscribeViewController.swift in Sources */,
 				6A095E15221E784B000B6C88 /* CPScanView.swift in Sources */,
 				6A309433221AADF8002113CC /* CPBookrackViewController.swift in Sources */,
@@ -961,7 +993,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SEWBU2EJ25;
 				INFOPLIST_FILE = ComicsProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -981,7 +1013,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SEWBU2EJ25;
 				INFOPLIST_FILE = ComicsProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
